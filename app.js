@@ -2,6 +2,7 @@
 const currentOperation = document.querySelector(".current-operation");
 
 // * Buttons
+// Numbers
 const button0 = document.querySelector("#button0");
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
@@ -12,9 +13,9 @@ const button6 = document.querySelector("#button6");
 const button7 = document.querySelector("#button7");
 const button8 = document.querySelector("#button8");
 const button9 = document.querySelector("#button9");
+// Operators
 
 // Functions
-
 // ! Event Listeners
 // * Numbers
 button0.addEventListener("click",() => {
