@@ -1,14 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-
+:root {
+    --background-color: #f1faee;
+    --numbers-color: #a8dadc;
+    --operators-color: #457b9d;
+    --clear-color: #e63946;
+    --delete-color: #1d3557;
+}
 body {
     font-size: 1.5em;
     padding: 0;
     margin: 0;
-    background-color: #D2D7D5;
+    background-color: var(--background-color);
     font-family: 'Oswald', sans-serif;
 } 
 
-    
 .main-container {
     display: flex;
     align-items: center;
@@ -20,10 +25,10 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns:  repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     align-content: center;
     width: 40vh;
-    height: 56vh;
+    height:60vh;
     padding: 15px;
     margin: 50 auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
@@ -32,9 +37,8 @@ body {
 
 .output {
     grid-column:span 4;
-    max-width: 100%;
-    min-height: 20%;
-    /* padding-right: 15px; */
+    min-height: 70%;
+    padding: 0 5px;
     padding: 7px;
     text-align: right;
     margin-bottom: 15px;
@@ -61,26 +65,40 @@ body {
 
 
 .number {
-    background-color: #D2D7D5;
+    background-color: var(--numbers-color);
 }
 .number:hover {
-    background-color: #BDC2C0;
+    filter:brightness(80%);
 }
 .operation {
-    background-color: #292929;
+    background-color: var(--operators-color);
     color: #ffffff;
 }
 
 .operation:hover {
-    background-color: #000000; 
+    filter:brightness(75%);
 }
 
-.clear {
-    background-color: #F80401;
+.clear-all {
+    background-color: var(--clear-color);
+    color: #ffffff;
+    grid-column: span 2;
+}
+
+.clear-all:hover {
+    filter:brightness(80%);
+}
+
+.delete {
+    background-color: var(--delete-color);
     color: #ffffff;
 }
 
-.clear:hover {
-    background-color: #c70300;
+.delete:hover {
+    filter:brightness(65%)
+}
+
+#equals{
+    grid-column: span 2;
 }
 
