@@ -21,7 +21,9 @@ const addButton = document.querySelector("#add");
 const subtractButton = document.querySelector("#subtract");
 const multiplyButton = document.querySelector("#multiply");
 const divideButton = document.querySelector("#divide")
-
+// Other buttons (Clear,Delete, Etc...)
+const clearButton = document.querySelector(".clear-all");
+const deleteButton = document.querySelector(".delete");
 // ! Functions
 function add(num1,num2){
     return num1+num2;
@@ -42,7 +44,7 @@ function getData() {
 }
 
 // ! Event Listeners
-// * Numbers
+// Numbers
 button0.addEventListener("click",() => {
     currentOperation.textContent += 0;
 });
@@ -83,7 +85,7 @@ button9.addEventListener("click",() => {
     currentOperation.textContent += 9;
 });
 
-// * Operators
+// Operators
 addButton.addEventListener("click",() => {
     operator = "+";
     firstNumber = getData();
@@ -108,5 +110,16 @@ divideButton.addEventListener("click",() => {
     previousOperation.textContent = firstNumber+ " " + operator;
 })
 
+// Clear and Delete buttons
+clearButton.addEventListener("click",() => {
+    previousOperation.textContent = undefined;
+    currentOperation.textContent = 0;
+    firstNumber = undefined;
+    operator = undefined;
+})
+
+deleteButton.addEventListener("click",() => {
+    currentOperation.textContent = Math.floor(parseInt(currentOperation.textContent) / 10)
+})
 
 
