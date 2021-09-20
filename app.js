@@ -3,6 +3,7 @@ const currentOperation = document.querySelector(".current-operation");
 const previousOperation = document.querySelector(".previous-operation");
 let operator;
 let firstNumber;
+let secondNumber;
 
 // * Buttons
 // Numbers
@@ -24,6 +25,8 @@ const divideButton = document.querySelector("#divide")
 // Other buttons (Clear,Delete, Etc...)
 const clearButton = document.querySelector(".clear-all");
 const deleteButton = document.querySelector(".delete");
+const equalsButton = document.querySelector(".equals");
+
 // ! Functions
 function add(num1,num2){
     return num1+num2;
@@ -38,50 +41,85 @@ function divide(num1,num2) {
     return num1/ num2;
 }
 
+
+function operate(num1,num2,operator) {
+    switch (operator) {
+        case "+": 
+            return num1+num2;
+            break;
+        case "-": 
+            return num1-num2;
+            break;
+        case "*":
+            return num1*num2;
+            break;
+        case "*":
+            return num1/num2;
+            break;
+        
+    }
+}
+
 // Get number from the input field
 function getData() {
     return parseInt(currentOperation.textContent);
 }
 
+function isZero() {
+    if (parseInt(currentOperation.textContent) === 0) {
+        currentOperation.textContent = undefined;
+    }
+}
+
 // ! Event Listeners
 // Numbers
 button0.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 0;
 });
 
 button1.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 1;
 });
 
 button2.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 2;
 });
 
 button3.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 3;
 });
 
 button4.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 4;
 });
 
 button5.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 5;
 });
 
 button6.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 6;
 });
 
 button7.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 7;
 });
 
 button8.addEventListener('click', () => {
+    isZero()
     currentOperation.textContent += 8;
 });
 
 button9.addEventListener("click",() => {
+    isZero()
     currentOperation.textContent += 9;
 });
 
@@ -90,24 +128,28 @@ addButton.addEventListener("click",() => {
     operator = "+";
     firstNumber = getData();
     previousOperation.textContent = firstNumber+ " " + operator;
+    currentOperation.textContent = "0";
 })
 
 subtractButton.addEventListener("click",() => {
     operator = "-";
     firstNumber = getData();
     previousOperation.textContent = firstNumber+ " " + operator;
+    currentOperation.textContent = "0";
 })
 
 multiplyButton.addEventListener("click",() => {
     operator = "*";
     firstNumber = getData();
     previousOperation.textContent = firstNumber+ " " + operator;
+    currentOperation.textContent = "0";
 })
 
 divideButton.addEventListener("click",() => {
     operator = "/";
     firstNumber = getData();
     previousOperation.textContent = firstNumber+ " " + operator;
+    currentOperation.textContent = "0";
 })
 
 // Clear and Delete buttons
@@ -120,6 +162,12 @@ clearButton.addEventListener("click",() => {
 
 deleteButton.addEventListener("click",() => {
     currentOperation.textContent = Math.floor(parseInt(currentOperation.textContent) / 10)
+})
+
+// Equals button
+equalsButton.addEventListener("click",() => {
+    secondNumber = getData();
+    currentOperation.textContent = parseInt(operate(firstNumber, secondNumber, operator));
 })
 
 
