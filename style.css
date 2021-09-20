@@ -81,28 +81,26 @@ body {
     filter:brightness(75%);
 }
 
-.clear-all {
+.clear-all,.delete {
     background-color: var(--clear-color);
     color: #ffffff;
+}
+.clear-all {
     grid-column: span 2;
 }
 
-.clear-all:hover {
+.clear-all:hover ,.delete:hover{
     filter:brightness(80%);
 }
 
-.delete {
-    background-color: var(--clear-color);
-    color: #ffffff;
-}
-
-.delete:hover {
-    filter:brightness(65%)
-}
 
 .dot , .equals{  
     background-color: var(--other-color);
     color: #ffffff;
+ }
+
+ .dot:hover {
+     filter:brightness(60%)
  }
 
  .equals{
