@@ -4,7 +4,7 @@
     --numbers-color: #a8dadc;
     --operators-color: #457b9d;
     --clear-color: #e63946;
-    --delete-color: #1d3557;
+    --other-color: #1d3557;
 }
 body {
     font-size: 1.5em;
@@ -29,22 +29,23 @@ body {
     align-content: center;
     width: 40vh;
     height:60vh;
-    padding: 15px;
+    padding: 10px;
     margin: 50 auto;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
     border-radius: 10px;
+    border: 3.7px solid #000000;
+
 }
 
 .output {
     grid-column:span 4;
-    min-height: 70%;
-    padding: 0 5px;
-    padding: 7px;
+    min-height: 80%;
+    padding-right: 3px;
     text-align: right;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     border: 2.5px solid black;
     border-radius: 7px;
-    font-size: 1em;
+    font-size: 1em;  
+    overflow: hidden;
 }
 
 .previous-operation {
@@ -90,7 +91,7 @@ body {
 }
 
 .delete {
-    background-color: var(--delete-color);
+    background-color: var(--clear-color);
     color: #ffffff;
 }
 
@@ -98,7 +99,12 @@ body {
     filter:brightness(65%)
 }
 
-#equals{
+.dot , .equals{  
+    background-color: var(--other-color);
+    color: #ffffff;
+ }
+
+ .equals{
     grid-column: span 2;
 }
 
