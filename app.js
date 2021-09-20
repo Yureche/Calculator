@@ -1,5 +1,8 @@
 // ! Define Variabels
 const currentOperation = document.querySelector(".current-operation");
+const previousOperation = document.querySelector(".previous-operation");
+let operator;
+let firstNumber;
 
 // * Buttons
 // Numbers
@@ -14,8 +17,30 @@ const button7 = document.querySelector("#button7");
 const button8 = document.querySelector("#button8");
 const button9 = document.querySelector("#button9");
 // Operators
+const addButton = document.querySelector("#add");
+const subtractButton = document.querySelector("#subtract");
+const multiplyButton = document.querySelector("#multiply");
+const divideButton = document.querySelector("#divide")
 
-// Functions
+// ! Functions
+function add(num1,num2){
+    return num1+num2;
+}
+function subtract(num1,num2) {
+    return num1-num2;
+}
+function multiply(num1,num2) {
+    return num1*num2;
+}
+function divide(num1,num2) {
+    return num1/ num2;
+}
+
+// Get number from the input field
+function getData() {
+    return parseInt(currentOperation.textContent);
+}
+
 // ! Event Listeners
 // * Numbers
 button0.addEventListener("click",() => {
@@ -59,5 +84,29 @@ button9.addEventListener("click",() => {
 });
 
 // * Operators
+addButton.addEventListener("click",() => {
+    operator = "+";
+    firstNumber = getData();
+    previousOperation.textContent = firstNumber+ " " + operator;
+})
+
+subtractButton.addEventListener("click",() => {
+    operator = "-";
+    firstNumber = getData();
+    previousOperation.textContent = firstNumber+ " " + operator;
+})
+
+multiplyButton.addEventListener("click",() => {
+    operator = "*";
+    firstNumber = getData();
+    previousOperation.textContent = firstNumber+ " " + operator;
+})
+
+divideButton.addEventListener("click",() => {
+    operator = "/";
+    firstNumber = getData();
+    previousOperation.textContent = firstNumber+ " " + operator;
+})
+
 
 
