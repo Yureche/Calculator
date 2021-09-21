@@ -39,7 +39,7 @@ function operate(num1,num2,operator) {
         case "*":
             return num1*num2;
             break;
-        case "*":
+        case "/":
             return num1/num2;
             break;
         
