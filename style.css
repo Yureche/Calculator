@@ -99,7 +99,7 @@ body {
     color: #ffffff;
  }
 
- .dot:hover {
+ .dot:hover, .equals:hover {
      filter:brightness(60%)
  }
 
