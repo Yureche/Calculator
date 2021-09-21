@@ -40,9 +40,8 @@ function operate(num1,num2,operator) {
             return num1*num2;
             break;
         case "/":
-            return num1/num2;
+            return num1/num2
             break;
-        
     }
 }
 
@@ -140,7 +139,7 @@ divideButton.addEventListener("click",() => {
 
 // Clear and Delete buttons
 clearButton.addEventListener("click",() => {
-    previousOperation.textContent = undefined;
+    previousOperation.innerHTML ="&#8203;";
     currentOperation.textContent = 0;
     firstNumber = undefined;
     operator = undefined;
@@ -154,7 +153,12 @@ deleteButton.addEventListener("click",() => {
 equalsButton.addEventListener("click",() => {
     secondNumber = getData();
     previousOperation.textContent = firstNumber+ " " + operator + " " + secondNumber + " " + "=";
-    currentOperation.textContent = parseInt(operate(firstNumber, secondNumber, operator));
+    if ((operator === "/") && parseInt(currentOperation.textContent) === 0) {
+        currentOperation.textContent = "Math Error"
+    }
+    else {
+        currentOperation.textContent = parseInt(operate(firstNumber, secondNumber, operator));
+    }
 })
 
 
