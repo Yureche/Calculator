@@ -28,20 +28,6 @@ const deleteButton = document.querySelector(".delete");
 const equalsButton = document.querySelector(".equals");
 
 // ! Functions
-function add(num1,num2){
-    return num1+num2;
-}
-function subtract(num1,num2) {
-    return num1-num2;
-}
-function multiply(num1,num2) {
-    return num1*num2;
-}
-function divide(num1,num2) {
-    return num1/ num2;
-}
-
-
 function operate(num1,num2,operator) {
     switch (operator) {
         case "+": 
@@ -167,6 +153,7 @@ deleteButton.addEventListener("click",() => {
 // Equals button
 equalsButton.addEventListener("click",() => {
     secondNumber = getData();
+    previousOperation.textContent = firstNumber+ " " + operator + " " + secondNumber + " " + "=";
     currentOperation.textContent = parseInt(operate(firstNumber, secondNumber, operator));
 })
 
