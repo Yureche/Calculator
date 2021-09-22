@@ -2,11 +2,11 @@
 const currentOperation = document.querySelector(".current-operation");
 const previousOperation = document.querySelector(".previous-operation");
 let operator;
-let firstNumber;
-let secondNumber;
+let firstNumber = null;
+let secondNumber = null;
 
 // * Buttons
-// Numbers
+// Numbers  
 const button0 = document.querySelector("#button0");
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
@@ -26,8 +26,22 @@ const divideButton = document.querySelector("#divide")
 const clearButton = document.querySelector(".clear-all");
 const deleteButton = document.querySelector(".delete");
 const equalsButton = document.querySelector(".equals");
+const dotButton = document.querySelector(".dot");
 
 // ! Functions
+// function add(num1,num2) {
+//     return num1 + num2;
+// }
+// function subtract(num1,num2) {
+//     return num1 - num2;
+// }
+// function multiply(num1,num2) {
+//     return num1 * num2;
+// }
+// function divide(num1,num2) {
+//     if (parseInt(num2) === 0) return "Math Error"
+//     return num1 / num2;
+// }
 function operate(num1,num2,operator) {
     switch (operator) {
         case "+": 
@@ -40,18 +54,27 @@ function operate(num1,num2,operator) {
             return num1*num2;
             break;
         case "/":
-            return num1/num2
+            return num1/num2;
             break;
     }
 }
-
+function returnResult() {
+    secondNumber = getData();
+    previousOperation.textContent = firstNumber+ " " + operator + " " + secondNumber + " " + "=";
+    if ((operator === "/") && parseInt(currentOperation.textContent) === 0) {
+        currentOperation.textContent = "Math Error"
+    }
+    else {
+        currentOperation.textContent = parseFloat(operate(firstNumber, secondNumber, operator));
+    }
+}
 // Get number from the input field
 function getData() {
-    return parseInt(currentOperation.textContent);
+    return parseFloat(currentOperation.textContent);
 }
 
 function isZero() {
-    if (parseInt(currentOperation.textContent) === 0) {
+    if (currentOperation.textContent === 0  || currentOperation.textContent === "0") {
         currentOperation.textContent = undefined;
     }
 }
@@ -151,14 +174,15 @@ deleteButton.addEventListener("click",() => {
 
 // Equals button
 equalsButton.addEventListener("click",() => {
-    secondNumber = getData();
-    previousOperation.textContent = firstNumber+ " " + operator + " " + secondNumber + " " + "=";
-    if ((operator === "/") && parseInt(currentOperation.textContent) === 0) {
-        currentOperation.textContent = "Math Error"
+    returnResult();
+})
+
+// Dot / Float Button
+dotButton.addEventListener("click",() => {
+    if ((currentOperation.textContent.slice(-1)) === ".") {
+        return;
     }
-    else {
-        currentOperation.textContent = parseInt(operate(firstNumber, secondNumber, operator));
-    }
+    currentOperation.textContent += ".";
 })
 
 
