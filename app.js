@@ -31,19 +31,6 @@ const equalsButton = document.querySelector(".equals");
 const dotButton = document.querySelector(".dot");
 
 // ! Functions
-// function add(num1,num2) {
-//     return num1 + num2;
-// }
-// function subtract(num1,num2) {
-//     return num1 - num2;
-// }
-// function multiply(num1,num2) {
-//     return num1 * num2;
-// }
-// function divide(num1,num2) {
-//     if (parseInt(num2) === 0) return "Math Error"
-//     return num1 / num2;
-// }
 function operate(num1,num2,operator) {
     switch (operator) {
         case "+": 
@@ -66,15 +53,12 @@ function getResult(array) {
     for (let i = 0; i < array.length; i++) {        
         if (firstNumber === null) {
             firstNumber = array[i];
-            console.log(firstNumber)
         }
         else if (operator === null) {   
             operator = array[i];
-            console.log(operator)
         }
         else if (secondNumber === null) {
             secondNumber = array[i];
-            console.log(secondNumber)
         }
 
         if (firstNumber !== null && secondNumber !== null && operator !== null) {
@@ -194,12 +178,14 @@ divideButton.addEventListener("click",() => {
     currentOperation.textContent = "0";
 })
 
-// Clear and Delete buttons
+// Clear and Delete buttons 
 clearButton.addEventListener("click",() => {
     previousOperation.innerHTML ="&#8203;";
     currentOperation.textContent = 0;
     firstNumber = undefined;
     operator = undefined;
+    number = "";
+    arr = [];
 })
 
 deleteButton.addEventListener("click",() => {
@@ -208,6 +194,9 @@ deleteButton.addEventListener("click",() => {
 
 // Equals button
 equalsButton.addEventListener("click",() => {
+    if (arr.length === 0) {
+        return;
+    }
     getResult(arr);
 })
 
