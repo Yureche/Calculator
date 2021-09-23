@@ -1,9 +1,11 @@
 // ! Define Variabels
 const currentOperation = document.querySelector(".current-operation");
 const previousOperation = document.querySelector(".previous-operation");
-let operator;
-let firstNumber = null;
+let operator = null; // Operator
+let firstNumber = null; // Numbers to calculate the result
 let secondNumber = null;
+let number = ""; // To store the current input and then push it into the array
+let arr = []; // Array to store the numbers and  the operations before calculating
 
 // * Buttons
 // Numbers  
@@ -58,15 +60,33 @@ function operate(num1,num2,operator) {
             break;
     }
 }
-function returnResult() {
-    secondNumber = getData();
-    previousOperation.textContent = firstNumber+ " " + operator + " " + secondNumber + " " + "=";
-    if ((operator === "/") && parseInt(currentOperation.textContent) === 0) {
-        currentOperation.textContent = "Math Error"
+// Get the result from the array
+function getResult(array) {
+    arr.push(parseFloat(number));
+    for (let i = 0; i < array.length; i++) {        
+        if (firstNumber === null) {
+            firstNumber = array[i];
+            console.log(firstNumber)
+        }
+        else if (operator === null) {   
+            operator = array[i];
+            console.log(operator)
+        }
+        else if (secondNumber === null) {
+            secondNumber = array[i];
+            console.log(secondNumber)
+        }
+
+        if (firstNumber !== null && secondNumber !== null && operator !== null) {
+            firstNumber = operate(firstNumber,secondNumber, operator);
+            operator = null;
+            secondNumber = null;
+        }
     }
-    else {
-        currentOperation.textContent = parseFloat(operate(firstNumber, secondNumber, operator));
-    }
+        result = firstNumber;
+        previousOperation.textContent = arr.join(" ")
+        previousOperation.textContent += " ="
+        currentOperation.textContent = result;
 }
 // Get number from the input field
 function getData() {
@@ -84,79 +104,93 @@ function isZero() {
 button0.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 0;
+    number += "0";
 });
 
 button1.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 1;
+    number += "1";
 });
 
 button2.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 2;
+    number += "2";
 });
 
 button3.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 3;
+    number += "3";
 });
 
 button4.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 4;
+    number += "4";
 });
 
 button5.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 5;
+    number += "5";
 });
 
 button6.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 6;
+    number += "6";
 });
 
 button7.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 7;
+    number += "7";
 });
 
 button8.addEventListener('click', () => {
     isZero()
     currentOperation.textContent += 8;
+    number += "8";
 });
 
 button9.addEventListener("click",() => {
     isZero()
     currentOperation.textContent += 9;
+    number += "9";
 });
 
 // Operators
 addButton.addEventListener("click",() => {
-    operator = "+";
-    firstNumber = getData();
-    previousOperation.textContent = firstNumber+ " " + operator;
+    arr.push(parseFloat(number));
+    number = "";
+    arr.push("+")
+    previousOperation.textContent = arr.join(" ")
     currentOperation.textContent = "0";
 })
 
 subtractButton.addEventListener("click",() => {
-    operator = "-";
-    firstNumber = getData();
-    previousOperation.textContent = firstNumber+ " " + operator;
+    arr.push(parseFloat(number));
+    number = "";
+    arr.push("-")
+    previousOperation.textContent = arr.join(" ")
     currentOperation.textContent = "0";
 })
 
 multiplyButton.addEventListener("click",() => {
-    operator = "*";
-    firstNumber = getData();
-    previousOperation.textContent = firstNumber+ " " + operator;
+    arr.push(parseFloat(number));
+    number = "";
+    arr.push("*")
+    previousOperation.textContent = arr.join(" ")
     currentOperation.textContent = "0";
 })
 
 divideButton.addEventListener("click",() => {
-    operator = "/";
-    firstNumber = getData();
-    previousOperation.textContent = firstNumber+ " " + operator;
+    arr.push(parseFloat(number));
+    number = "";
+    arr.push("/")
+    previousOperation.textContent = arr.join(" ")
     currentOperation.textContent = "0";
 })
 
@@ -174,7 +208,7 @@ deleteButton.addEventListener("click",() => {
 
 // Equals button
 equalsButton.addEventListener("click",() => {
-    returnResult();
+    getResult(arr);
 })
 
 // Dot / Float Button
@@ -184,5 +218,7 @@ dotButton.addEventListener("click",() => {
     }
     currentOperation.textContent += ".";
 })
+
+
 
 
