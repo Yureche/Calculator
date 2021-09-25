@@ -51,6 +51,7 @@ body {
 
 .previous-operation {
     font-size: .7em;
+    word-wrap: nowrap;
 }
 
 .grid-container button {
