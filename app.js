@@ -6,7 +6,8 @@ let firstNumber = null; // Numbers to calculate the result
 let secondNumber = null;
 let number = ""; // To store the current input and then push it into the array
 let arr = []; // Array to store the numbers and  the operations before calculating
-
+isEqualsPressed = false;
+let operators = ["+" , "-" , "*", "/"];
 // * Buttons
 // Numbers  
 const button0 = document.querySelector("#button0");
@@ -49,7 +50,8 @@ function operate(num1,num2,operator) {
 }
 // Get the result from the array
 function getResult(array) {
-    arr.push(parseFloat(number));
+    arr.push(parseFloat(currentOperation.textContent));
+    currentOperation.textContent = null;
     for (let i = 0; i < array.length; i++) {        
         if (firstNumber === null) {
             firstNumber = array[i];
@@ -67,18 +69,25 @@ function getResult(array) {
             secondNumber = null;
         }
     }
-        result = firstNumber;
         previousOperation.textContent = arr.join(" ")
         previousOperation.textContent += " ="
-        currentOperation.textContent = result;
+        currentOperation.textContent = firstNumber;
 }
 // Get number from the input field
 function getData() {
     return parseFloat(currentOperation.textContent);
 }
 
+
+function isEmpty() {  // Checking if the array of inputs is empty
+    if (arr.length === 0) {
+        return true;
+    }
+    return false;
+}
+
 function isZero() {
-    if (currentOperation.textContent === 0  || currentOperation.textContent === "0") {
+    if (currentOperation.textContent === '0') {
         currentOperation.textContent = undefined;
     }
 }
@@ -86,110 +95,159 @@ function isZero() {
 // ! Event Listeners
 // Numbers
 button0.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 0;
     number += "0";
 });
 
 button1.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 1;
     number += "1";
 });
 
 button2.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 2;
     number += "2";
 });
 
 button3.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 3;
     number += "3";
 });
 
 button4.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 4;
     number += "4";
 });
 
 button5.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 5;
     number += "5";
 });
 
 button6.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 6;
     number += "6";
 });
 
 button7.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 7;
     number += "7";
 });
 
 button8.addEventListener('click', () => {
-    isZero()
+    isZero();
     currentOperation.textContent += 8;
     number += "8";
 });
 
 button9.addEventListener("click",() => {
-    isZero()
+    isZero();
     currentOperation.textContent += 9;
     number += "9";
 });
 
 // Operators
 addButton.addEventListener("click",() => {
+    if (isEqualsPressed) {
+        arr = [];
+        number = firstNumber;
+        firstNumber = null;
+        isEqualsPressed = false;
+    }
+    if (number === "") {
+        return;
+    }
     arr.push(parseFloat(number));
+    if(operators.includes( arr.at(-1))  || number === "") {
+        return;
+    }
     number = "";
     arr.push("+")
     previousOperation.textContent = arr.join(" ")
-    currentOperation.textContent = "0";
+    currentOperation.textContent = 0;
 })
 
 subtractButton.addEventListener("click",() => {
+    if (isEqualsPressed) {
+        arr = [];
+        number = firstNumber;
+        firstNumber = null;
+        isEqualsPressed = false;
+    }
+    if (number === "") {
+        return;
+    }
     arr.push(parseFloat(number));
+    if(operators.includes( arr.at(-1))  || number === "") {
+        return;
+    }
     number = "";
     arr.push("-")
     previousOperation.textContent = arr.join(" ")
-    currentOperation.textContent = "0";
+    currentOperation.textContent = 0;
 })
 
 multiplyButton.addEventListener("click",() => {
+    if (isEqualsPressed) {
+        arr = [];
+        number = firstNumber;
+        firstNumber = null;
+        isEqualsPressed = false;
+    }
+    if (number === "") {
+        return;
+    }
     arr.push(parseFloat(number));
+    if(operators.includes( arr.at(-1))  || number === "") {
+        return;
+    }
     number = "";
     arr.push("*")
     previousOperation.textContent = arr.join(" ")
-    currentOperation.textContent = "0";
+    currentOperation.textContent = 0;
 })
 
 divideButton.addEventListener("click",() => {
+    if (isEqualsPressed) {
+        arr = [];
+        number = firstNumber;
+        firstNumber = null;
+        isEqualsPressed = false;
+    }
+    if (number === "") {
+        return;
+    }
     arr.push(parseFloat(number));
+    if(operators.includes( arr.at(-1))  || number === "") {
+        return;
+    }
     number = "";
     arr.push("/")
     previousOperation.textContent = arr.join(" ")
-    currentOperation.textContent = "0";
+    currentOperation.textContent = 0;
 })
 
 // Clear and Delete buttons 
 clearButton.addEventListener("click",() => {
     previousOperation.innerHTML ="&#8203;";
-    currentOperation.textContent = 0;
-    firstNumber = undefined;
-    operator = undefined;
+    currentOperation.textContent = undefined;
+    firstNumber = null;
+    operator = null;
     number = "";
     arr = [];
+    isEqualsPressed = false;
 })
 
 deleteButton.addEventListener("click",() => {
-    currentOperation.textContent = Math.floor(parseInt(currentOperation.textContent) / 10)
+    currentOperation.textContent = currentOperation.textContent.slice(0,-1);
 })
 
 // Equals button
@@ -197,15 +255,19 @@ equalsButton.addEventListener("click",() => {
     if (arr.length === 0) {
         return;
     }
-    getResult(arr);
+    if (!isEqualsPressed) {
+        getResult(arr);
+    }
+    isEqualsPressed = true;
 })
 
 // Dot / Float Button
 dotButton.addEventListener("click",() => {
-    if ((currentOperation.textContent.slice(-1)) === ".") {
+    if ((currentOperation.textContent.slice(-1)) === "." || currentOperation.textContent === "") {
         return;
     }
     currentOperation.textContent += ".";
+    number += ".";
 })
 
 
