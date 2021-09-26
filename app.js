@@ -263,7 +263,7 @@ equalsButton.addEventListener("click",() => {
 
 // Dot / Float Button
 dotButton.addEventListener("click",() => {
-    if ((currentOperation.textContent.slice(-1)) === "." || currentOperation.textContent === "") {
+    if (currentOperation.textContent.includes(".")  || currentOperation.textContent === "") {
         return;
     }
     currentOperation.textContent += ".";
