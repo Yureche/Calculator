@@ -6,7 +6,7 @@ let firstNumber = null; // Numbers to calculate the result
 let secondNumber = null;
 let number = ""; // To store the current input and then push it into the array
 let arr = []; // Array to store the numbers and  the operations before calculating
-isEqualsPressed = false;
+isEqualsPressed = false; 
 let operators = ["+" , "-" , "*", "/"];
 // * Buttons
 // Numbers  
@@ -30,8 +30,8 @@ const clearButton = document.querySelector(".clear-all");
 const deleteButton = document.querySelector(".delete");
 const equalsButton = document.querySelector(".equals");
 const dotButton = document.querySelector(".dot");
-
 // ! Functions
+// Function to calculate and return a number using 2 number and an operator,
 function operate(num1,num2,operator) {
     switch (operator) {
         case "+": 
@@ -48,10 +48,11 @@ function operate(num1,num2,operator) {
             break;
     }
 }
-// Get the result from the array
+// Calculate all the number in the array using the operate() function.
 function getResult(array) {
-    arr.push(parseFloat(currentOperation.textContent));
-    currentOperation.textContent = null;
+    arr.push(parseFloat(currentOperation.textContent)); // Push last entered number into the array
+    currentOperation.textContent = null; 
+    // Looping trough the array and defining the first number, second number and the operator.
     for (let i = 0; i < array.length; i++) {        
         if (firstNumber === null) {
             firstNumber = array[i];
@@ -71,7 +72,8 @@ function getResult(array) {
     }
         previousOperation.textContent = arr.join(" ")
         previousOperation.textContent += " ="
-        if ((firstNumber+"").includes(".")) {
+         // Checking if the number is a fload and long, if yes, make it shorter
+        if ((firstNumber+"").includes(".") && (firstNumber.length >= 10)) {
             currentOperation.textContent = firstNumber.toPrecision(7);
         }
         else {
