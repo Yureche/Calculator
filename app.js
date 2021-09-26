@@ -99,63 +99,81 @@ function isZero() {
     }
 }
 
+function shouldClearOutput() {
+    if (isEqualsPressed) {
+        currentOperation.textContent = null;
+        previousOperation.innerHTML = "&#8203;";
+    }
+}
+
+
 // ! Event Listeners
 // Numbers
 button0.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 0;
     number += "0";
 });
 
 button1.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 1;
     number += "1";
 });
 
 button2.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 2;
     number += "2";
 });
 
 button3.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 3;
     number += "3";
 });
 
 button4.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 4;
     number += "4";
 });
 
 button5.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 5;
     number += "5";
 });
 
 button6.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 6;
     number += "6";
 });
 
 button7.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 7;
     number += "7";
 });
 
 button8.addEventListener('click', () => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 8;
     number += "8";
 });
 
 button9.addEventListener("click",() => {
+    shouldClearOutput();
     isZero();
     currentOperation.textContent += 9;
     number += "9";
