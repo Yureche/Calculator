@@ -71,7 +71,12 @@ function getResult(array) {
     }
         previousOperation.textContent = arr.join(" ")
         previousOperation.textContent += " ="
-        currentOperation.textContent = firstNumber;
+        if ((firstNumber+"").includes(".")) {
+            currentOperation.textContent = firstNumber.toPrecision(7);
+        }
+        else {
+            currentOperation.textContent = firstNumber;
+        }
 }
 // Get number from the input field
 function getData() {
